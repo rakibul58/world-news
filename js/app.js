@@ -12,14 +12,36 @@ const showCategories = (categories) => {
 
         const newDiv = document.createElement('a');
         newDiv.innerHTML = `
-            <button id="${category.category_id}" onclick="showCategoryNews('${category.category_id}')" class="btn fw-semibold fs-5 text-secondary" > ${ category.category_name } </button>`;
+            <button id="${category.category_id}" onclick="loadCategoryNews('${category.category_id}')" class="btn fw-semibold fs-5 text-secondary my-btn" > ${ category.category_name } </button>`;
         categoriesDiv.appendChild(newDiv);
         
     });
+    const buttons = document.getElementsByClassName('my-btn');
+    buttons[0].classList.remove('text-secondary');
+    buttons[0].classList.add('text-primary');
 }
 
 const loadCategoryNews = (categoryId) =>{
-    console.log(categoryId);
+
+    selectedCategory(categoryId);
 }
+
+const selectedCategory = (categoryId) =>
+{
+    resetBtn();
+    const selectBtn = document.getElementById(categoryId);
+    selectBtn.classList.remove('text-secondary');
+    selectBtn.classList.add('text-primary');
+}
+
+const resetBtn = () => {
+    const buttons = document.getElementsByClassName('my-btn');
+    for (const button of buttons) {
+        
+            button.classList.remove('text-primary');
+            button.classList.add('text-secondary');
+    }
+}
+
 
 loadCategories();
