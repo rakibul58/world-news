@@ -19,11 +19,17 @@ const showCategories = (categories) => {
     const buttons = document.getElementsByClassName('my-btn');
     buttons[0].classList.remove('text-secondary');
     buttons[0].classList.add('text-primary');
+    loadCategoryNews('05');
 }
 
 const loadCategoryNews = (categoryId) =>{
 
     selectedCategory(categoryId);
+    const url = `https://openapi.programming-hero.com/api/news/category/${categoryId}`;
+    fetch(url)
+    .then(res => res.json())
+    .then(data => showCategoryNews(data.data))
+    .catch(error => console.log(error));
 }
 
 const selectedCategory = (categoryId) =>
@@ -43,5 +49,37 @@ const resetBtn = () => {
     }
 }
 
+const showCategoryNews = categoryItems => {
+    const newsBlock = document.getElementById('news-block');
+    newsBlock.textContent = '';
+    console.log(categoryItems)
+    categoryItems.forEach(categoryItem => {
+        const newBlock = document.createElement('div');
+        newBlock.classList.add('row', 'g-0' , 'mb-5' , 'bg-white' , 'p-3' , 'rounded-4');
+        let details = categoryItem.details;
+        if(categoryItem.details.length > 500)
+        {
+            details = details.slice(0,500)+'...';
+        }
+        newBlock.innerHTML = `
+
+                    <div class="col-md-4">
+                        <img src="${categoryItem.thumbnail_url}" class="img-fluid rounded-4" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">${categoryItem.title}</h5>
+                            <p class="card-text">
+                            ${details}
+                            </p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+
+        `;
+        newsBlock.appendChild(newBlock);
+    })
+}
 
 loadCategories();
+
