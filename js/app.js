@@ -55,7 +55,7 @@ const showCategoryNews = (categoryItems , categoryName) => {
     newsBlock.textContent = '';
     // console.log(categoryItems)
     const numOfCategories = document.getElementById('number-of-categories');
-    numOfCategories.innerText = `${categoryItems.length ? categoryItems.length : 'No'} items found for category ${categoryName}`;
+    numOfCategories.innerText = `${categoryItems.length ? categoryItems.length : 'No'} items found for category ${categoryName != undefined ? categoryName : 'Breaking News'}`;
     categoryItems.sort((a, b) => a.total_view - b.total_view);
     categoryItems.reverse();
     categoryItems.forEach(categoryItem => {
