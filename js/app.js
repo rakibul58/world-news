@@ -13,23 +13,23 @@ const showCategories = (categories) => {
 
         const newDiv = document.createElement('a');
         newDiv.innerHTML = `
-            <button id="${category.category_id}" onclick="loadCategoryNews('${category.category_id}')" class="btn fw-semibold fs-5 text-secondary my-btn" > ${category.category_name} </button>`;
+            <button id="${category.category_id}" onclick="loadCategoryNews('${category.category_id}','${category.category_name}')" class="btn fw-semibold fs-5 text-secondary my-btn" > ${category.category_name} </button>`;
         categoriesDiv.appendChild(newDiv);
 
     });
     const buttons = document.getElementsByClassName('my-btn');
     buttons[0].classList.remove('text-secondary');
     buttons[0].classList.add('text-primary');
-    loadCategoryNews('05');
+    loadCategoryNews('01');
 }
 
-const loadCategoryNews = (categoryId) => {
+const loadCategoryNews = (categoryId , categoryName) => {
     toggle(true);
     selectedCategory(categoryId);
     const url = `https://openapi.programming-hero.com/api/news/category/${categoryId}`;
     fetch(url)
         .then(res => res.json())
-        .then(data => showCategoryNews(data.data))
+        .then(data => showCategoryNews(data.data , categoryName))
         .catch(error => console.log(error));
 }
 
@@ -49,12 +49,12 @@ const resetBtn = () => {
     }
 }
 
-const showCategoryNews = categoryItems => {
+const showCategoryNews = (categoryItems , categoryName) => {
     const newsBlock = document.getElementById('news-block');
     newsBlock.textContent = '';
     // console.log(categoryItems)
     const numOfCategories = document.getElementById('number-of-categories');
-    numOfCategories.innerText = `${categoryItems.length ? categoryItems.length : 'No'} items found for category Entertainment`;
+    numOfCategories.innerText = `${categoryItems.length ? categoryItems.length : 'No'} items found for category ${categoryName}`;
     categoryItems.sort((a, b) => a.total_view - b.total_view);
     categoryItems.reverse();
     categoryItems.forEach(categoryItem => {
