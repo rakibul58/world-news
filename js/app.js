@@ -52,10 +52,11 @@ const resetBtn = () => {
 const showCategoryNews = categoryItems => {
     const newsBlock = document.getElementById('news-block');
     newsBlock.textContent = '';
-    console.log(categoryItems)
+    // console.log(categoryItems)
     const numOfCategories = document.getElementById('number-of-categories');
     numOfCategories.innerText = `${categoryItems.length ? categoryItems.length : 'No'} items found for category Entertainment`;
     categoryItems.forEach(categoryItem => {
+        console.log(categoryItem.author);
         const newBlock = document.createElement('div');
         newBlock.classList.add('row', 'g-0', 'mb-5', 'bg-white', 'p-3', 'rounded-4');
         let details = categoryItem.details;
@@ -69,11 +70,19 @@ const showCategoryNews = categoryItems => {
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h5 class="card-title">${categoryItem.title}</h5>
-                            <p class="card-text">
+                            <h5 class="card-title fw-bold fs-5 text-black my-3">${categoryItem.title}</h5>
+                            <p class="card-text text-secondary fs-6 fw-semibold">
                             ${details}
                             </p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            <div class="mt-5 d-flex align-items-center gap-4">
+                                <div>
+                                <img width="40" class="rounded-circle" src = "${categoryItem.author.img}">
+                                </div>
+                                <div class="d-flex flex-column fw-semibold">
+                                    <p class="m-0">${categoryItem.author.name || null ? categoryItem.author.name : 'No Data Found'}</p>
+                                    <p class="m-0 text-secondary">${categoryItem.author.published_date || null ? categoryItem.author.published_date : 'No Data Found'}</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
