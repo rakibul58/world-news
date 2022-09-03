@@ -55,8 +55,10 @@ const showCategoryNews = categoryItems => {
     // console.log(categoryItems)
     const numOfCategories = document.getElementById('number-of-categories');
     numOfCategories.innerText = `${categoryItems.length ? categoryItems.length : 'No'} items found for category Entertainment`;
+    categoryItems.sort((a, b) => a.total_view - b.total_view);
+    categoryItems.reverse();
     categoryItems.forEach(categoryItem => {
-        console.log(categoryItem.author);
+        console.log(categoryItem);
         const newBlock = document.createElement('div');
         newBlock.classList.add('row', 'g-0', 'mb-5', 'bg-white', 'p-3', 'rounded-4');
         let details = categoryItem.details;
@@ -82,6 +84,8 @@ const showCategoryNews = categoryItems => {
                                     <p class="m-0">${categoryItem.author.name || null ? categoryItem.author.name : 'No Data Found'}</p>
                                     <p class="m-0 text-secondary">${categoryItem.author.published_date || null ? categoryItem.author.published_date : 'No Data Found'}</p>
                                 </div>
+                                <p class="mx-auto fw-bold fs-6"><i class="fa-regular fa-eye"></i> ${categoryItem.total_view != null ? categoryItem.total_view : 'No Data Found'}</p>
+                                <p class="ms-auto"><a class="link-secondary" onclick="newsDetail()"><i class="fa-solid fa-arrow-right fw-bold fs-4"></i></a><p>
                             </div>
                         </div>
                     </div>
