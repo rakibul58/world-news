@@ -136,6 +136,10 @@ const showNewsDetail = details =>
         <div style="height:100px" class="mt-2 overflow-auto">${details.details}</div>
 
     `;
+    const modalViews = document.getElementById('modal-views');
+    modalViews.innerHTML = `
+    <p class="mx-auto fw-bold fs-6"><i class="fa-regular fa-eye"></i> ${details.total_view != null ? details.total_view : 'No Data Found'}</p>
+    `;
     console.log(details)
 
 }
