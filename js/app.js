@@ -58,7 +58,7 @@ const showCategoryNews = categoryItems => {
     categoryItems.sort((a, b) => a.total_view - b.total_view);
     categoryItems.reverse();
     categoryItems.forEach(categoryItem => {
-        console.log(categoryItem);
+        // console.log(categoryItem._id);
         const newBlock = document.createElement('div');
         newBlock.classList.add('row', 'g-0', 'mb-5', 'bg-white', 'p-3', 'rounded-4');
         let details = categoryItem.details;
@@ -85,7 +85,7 @@ const showCategoryNews = categoryItems => {
                                     <p class="m-0 text-secondary">${categoryItem.author.published_date || null ? categoryItem.author.published_date : 'No Data Found'}</p>
                                 </div>
                                 <p class="mx-auto fw-bold fs-6"><i class="fa-regular fa-eye"></i> ${categoryItem.total_view != null ? categoryItem.total_view : 'No Data Found'}</p>
-                                <p class="ms-auto"><a class="link-secondary" onclick="newsDetail()" data-bs-toggle="modal" data-bs-target="#newsModal"><i class="fa-solid fa-arrow-right fw-bold fs-4"></i></a><p>
+                                <p class="ms-auto"><a class="link-secondary" onclick="newsDetailFetch('${categoryItem._id}')" data-bs-toggle="modal" data-bs-target="#newsModal"><i class="fa-solid fa-arrow-right fw-bold fs-4"></i></a><p>
                             </div>
                         </div>
                     </div>
@@ -104,6 +104,23 @@ const toggle = isLoading => {
     else {
         document.getElementById('loading').classList.add('d-none');
     }
+
+}
+
+const newsDetailFetch = newsId =>{
+    const url = `https://openapi.programming-hero.com/api/news/${newsId}`;
+    fetch(url)
+    .then(res => res.json())
+    .then(data => showNewsDetail(data.data[0]))
+    .catch(error => console.log(error));
+}
+
+const showNewsDetail = details =>
+{
+
+    const newsTitle = document.getElementById('newsModalLabel');
+    newsTitle.innerText = `${details.title}`;
+    console.log(details)
 
 }
 
