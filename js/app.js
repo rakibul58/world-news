@@ -85,7 +85,7 @@ const showCategoryNews = categoryItems => {
                                     <p class="m-0 text-secondary">${categoryItem.author.published_date || null ? categoryItem.author.published_date : 'No Data Found'}</p>
                                 </div>
                                 <p class="mx-auto fw-bold fs-6"><i class="fa-regular fa-eye"></i> ${categoryItem.total_view != null ? categoryItem.total_view : 'No Data Found'}</p>
-                                <p class="ms-auto"><a class="link-secondary" onclick="newsDetail()"><i class="fa-solid fa-arrow-right fw-bold fs-4"></i></a><p>
+                                <p class="ms-auto"><a class="link-secondary" onclick="newsDetail()" data-bs-toggle="modal" data-bs-target="#newsModal"><i class="fa-solid fa-arrow-right fw-bold fs-4"></i></a><p>
                             </div>
                         </div>
                     </div>
