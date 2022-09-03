@@ -67,23 +67,23 @@ const showCategoryNews = categoryItems => {
         }
         newBlock.innerHTML = `
 
-                    <div class="col-md-4 text-center text-lg-start">
-                        <img src="${categoryItem.thumbnail_url}" class="img-fluid rounded-4" alt="...">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold fs-5 text-black my-3">${categoryItem.title}</h5>
-                            <p class="card-text text-secondary fs-6 fw-semibold">
-                            ${details}
-                            </p>
-                            <div class="mt-5 d-flex align-items-center gap-4">
-                                <div>
-                                <img width="40" class="rounded-circle" src = "${categoryItem.author.img}">
-                                </div>
-                                <div class="d-flex flex-column fw-semibold">
-                                    <p class="m-0">${categoryItem.author.name || null ? categoryItem.author.name : 'No Data Found'}</p>
-                                    <p class="m-0 text-secondary">${categoryItem.author.published_date || null ? categoryItem.author.published_date : 'No Data Found'}</p>
-                                </div>
+            <div class="col-md-4 text-center text-lg-start">
+                <img src="${categoryItem.thumbnail_url}" class="img-fluid rounded-4" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold fs-5 text-black my-3">${categoryItem.title}</h5>
+                    <p class="card-text text-secondary fs-6 fw-semibold">
+                        ${details}
+                    </p>
+                    <div class="mt-5 d-flex align-items-center gap-4">
+                        <div>
+                            <img width="40" class="rounded-circle" src = "${categoryItem.author.img}">
+                        </div>
+                        <div class="d-flex flex-column fw-semibold">
+                            <p class="m-0">${categoryItem.author.name || null ? categoryItem.author.name : 'No Data Found'}</p>
+                            <p class="m-0 text-secondary">${categoryItem.author.published_date || null ? categoryItem.author.published_date : 'No Data Found'}</p>
+                            </div>
                                 <p class="mx-auto fw-bold fs-6"><i class="fa-regular fa-eye"></i> ${categoryItem.total_view != null ? categoryItem.total_view : 'No Data Found'}</p>
                                 <p class="ms-auto"><a class="link-secondary" onclick="newsDetailFetch('${categoryItem._id}')" data-bs-toggle="modal" data-bs-target="#newsModal"><i class="fa-solid fa-arrow-right fw-bold fs-4"></i></a><p>
                             </div>
@@ -120,6 +120,22 @@ const showNewsDetail = details =>
 
     const newsTitle = document.getElementById('newsModalLabel');
     newsTitle.innerText = `${details.title}`;
+    const modalBody = document.getElementById('modal-body');
+    modalBody.innerHTML = `
+
+        <img src="${details.image_url}" class="img-fluid">
+        <div class="mt-5 d-flex align-items-center gap-4">
+            <div>
+                <img width="40" class="rounded-circle" src = "${details.author.img}">
+            </div>
+            <div class="d-flex flex-column fw-semibold">
+                <p class="m-0">${details.author.name || null ? details.author.name : 'No Data Found'}</p>
+                <p class="m-0 text-secondary">${details.author.published_date || null ? details.author.published_date : 'No Data Found'}</p>
+            </div>
+        </div>
+        <div style="height:100px" class="mt-2 overflow-auto">${details.details}</div>
+
+    `;
     console.log(details)
 
 }
