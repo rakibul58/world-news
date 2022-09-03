@@ -53,7 +53,21 @@
         </section>
         <section class="container mt-5">
             <div id="number-of-categories" class="card mb-3 border-0 py-3 ps-3 fw-semibold fs-5">
-        
+
+            </div>
+        </section>
+        <section class="container mt-5">
+            <div class="d-flex flex-column flex-lg-row justify-content-lg-between text-center gap-3">
+                <div>
+                    <p class="d-inline fw-semibold fs-5">Sort By View</p>
+                    <select class="ms-3 fw-semibold text-secondary border-0 px-2 py-1 rounded" name="sort" id="">
+                        <option value="default">Default</option>
+                    </select>
+                </div>
+                <div>
+                    <button class="btn btn-primary fw-semibold">Today's Pick</button>
+                    <button class="btn btn-outline-primary fw-semibold">Trending</button>
+                </div>
             </div>
         </section>
         <section class="container mt-5">
@@ -62,7 +76,7 @@
             </div>
         </section>
         <section id="loading" class="d-none">
-            <div style="height: 300px;" class="d-flex justify-content-center align-items-center">
+            <div style="height: 50px;" class="d-flex justify-content-center align-items-center">
                 <div class="spinner-border text-success" role="status">
                     <span class="visually-hidden">Loading...</span>
                 </div>

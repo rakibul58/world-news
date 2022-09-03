@@ -64,7 +64,7 @@ const showCategoryNews = categoryItems => {
         }
         newBlock.innerHTML = `
 
-                    <div class="col-md-4">
+                    <div class="col-md-4 text-center text-lg-start">
                         <img src="${categoryItem.thumbnail_url}" class="img-fluid rounded-4" alt="...">
                     </div>
                     <div class="col-md-8">
