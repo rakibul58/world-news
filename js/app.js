@@ -50,6 +50,7 @@ const resetBtn = () => {
 }
 
 const showCategoryNews = (categoryItems , categoryName) => {
+    // toggle(true);
     const newsBlock = document.getElementById('news-block');
     newsBlock.textContent = '';
     // console.log(categoryItems)
