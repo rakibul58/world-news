@@ -1,4 +1,4 @@
-# World News Web Application
+# World News
 
 [Live Site](https://world-news-rakibul58.netlify.app/)
 
